@@ -6,7 +6,6 @@ def zeros(n):
     return count
 
 
-print(zeros(12))
-print(zeros(0))
-print(zeros(6))
-print(zeros(30))
+assert zeros(0) == 0
+assert zeros(6) == 1
+assert zeros(30) == 7

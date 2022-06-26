@@ -1,10 +1,8 @@
 def bananas(s, word='banana'):
     result = set()
-
     if word == '':
         result.add(''.rjust(len(s), '-'))
         return result
-
     for i in range(len(s)):
         if word[0] == s[i]:
             left_s = ''.rjust(i, '-') + s[i]
@@ -17,8 +15,10 @@ def bananas(s, word='banana'):
     return result
 
 
-print(bananas('bbananana'))
-print(bananas('banann'))
-print(bananas('banana'))
-print(bananas('bananaaa'))
-print(bananas('bananana'))
+assert bananas("banann") == set()
+assert bananas("banana") == {"banana"}
+assert bananas("bbananana") == {"b-an--ana", "-banana--", "-b--anana", "b-a--nana", "-banan--a",
+                     "b-ana--na", "b---anana", "-bana--na", "-ba--nana", "b-anan--a",
+                     "-ban--ana", "b-anana--"}
+assert bananas("bananaaa") == {"banan-a-", "banana--", "banan--a"}
+assert bananas("bananana") == {"ban--ana", "ba--nana", "bana--na", "b--anana", "banana--", "banan--a"}

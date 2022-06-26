@@ -13,10 +13,7 @@ def domain_name(url):
         return url[first_index: second_index]
 
 
-print(domain_name('http://github.com/carbonfive/raygun'))
-print(domain_name('http://www.zombie-bites.com'))
-print(domain_name('https://www.cnet.com'))
-print(domain_name('http://google.com'))
-print(domain_name('http://google.co.jp'))
-print(domain_name('www.xakep.ru'))
-print(domain_name('https://youtube.com'))
+assert domain_name("http://google.com") == "google"
+assert domain_name("http://google.co.jp") == "google"
+assert domain_name("www.xakep.ru") == "xakep"
+assert domain_name("https://youtube.com") == "youtube"
