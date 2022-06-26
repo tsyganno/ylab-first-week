@@ -1,42 +1,24 @@
-from itertools import combinations
+def bananas(s, word='banana'):
+    result = set()
 
+    if word == '':
+        result.add(''.rjust(len(s), '-'))
+        return result
 
-def bananas(s):
-    count_combinations = combinations(s, 6)
-    d = {}
-    for el in 'banana':
-        count = s.count(el)
-        for i in range(count):
-            index_el = s.find(el)
-            if el not in d:
-                d[el] = [index_el]
-                s = s[:index_el] + '-' + s[index_el + 1:]
+    for i in range(len(s)):
+        if word[0] == s[i]:
+            left_s = ''.rjust(i, '-') + s[i]
+            if s[i + 1:] == '' and word[1:] == '':
+                result.add(left_s)
             else:
-                d[el].append(index_el)
-                s = s[:index_el] + '-' + s[index_el + 1:]
-    dataset = []
-    for el in count_combinations:
-        for key in d.keys():
+                right_s_list = bananas(s[i + 1:], word[1:])
+                for right_s in right_s_list:
+                    result.add(left_s + right_s)
+    return result
 
 
-
-
-    return count_combinations
-
-
-a = bananas('bbananana')
-print(a)
-
-
-"""d = {}
-    for el in 'banana':
-        count = s.count(el)
-        for i in range(count):
-            index_el = s.find(el)
-            if el not in d:
-                d[el] = [index_el]
-                s = s[:index_el] + '-' + s[index_el + 1:]
-            else:
-                d[el].append(index_el)
-                s = s[:index_el] + '-' + s[index_el + 1:]
-    print(d)"""
+print(bananas('bbananana'))
+print(bananas('banann'))
+print(bananas('banana'))
+print(bananas('bananaaa'))
+print(bananas('bananana'))
